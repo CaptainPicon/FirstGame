@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://8s3gig3kmyj6"]
+[gd_scene load_steps=41 format=3 uid="uid://8s3gig3kmyj6"]
 
 [ext_resource type="Texture2D" uid="uid://bfq5mttimjhja" path="res://assets/sprites/knight.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://bk5dpqbs86c84" path="res://scripts/player.gd" id="1_g2els"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://duagpivgb5ees" path="res://scripts/fall.gd" id="6_tuyoq"]
 [ext_resource type="Script" uid="uid://bae25nwoh3o1e" path="res://scripts/move.gd" id="7_fjrip"]
 [ext_resource type="Script" uid="uid://uaeepk7ew2ld" path="res://scripts/jump.gd" id="8_smehm"]
+[ext_resource type="Script" uid="uid://bdqvb5aljwir4" path="res://scripts/roll.gd" id="9_ur7pv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g2els"]
 atlas = ExtResource("1_3vyb7")
@@ -248,7 +249,6 @@ position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_tuyoq")
 animation = &"roll"
 autoplay = "idle"
-frame_progress = 0.5310236
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -6)
@@ -273,6 +273,7 @@ script = ExtResource("6_tuyoq")
 idle_state = NodePath("../idle")
 move_state = NodePath("../move")
 animation_name = "idle"
+move_speed = null
 
 [node name="move" type="Node" parent="state_machine" node_paths=PackedStringArray("fall_state", "idle_state", "jump_state")]
 script = ExtResource("7_fjrip")
@@ -287,3 +288,11 @@ fall_state = NodePath("../fall")
 idle_state = NodePath("../idle")
 move_state = NodePath("../move")
 animation_name = "jump"
+
+[node name="roll" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state", "fall_state", "move_state", "jump_state")]
+script = ExtResource("9_ur7pv")
+idle_state = NodePath("../idle")
+fall_state = NodePath("../fall")
+move_state = NodePath("../move")
+jump_state = NodePath("../jump")
+animation_name = "roll"
