@@ -247,9 +247,8 @@ script = ExtResource("1_g2els")
 [node name="animations" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_tuyoq")
-animation = &"run"
+animation = &"roll"
 autoplay = "idle"
-frame_progress = 0.34042624
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -6)
@@ -262,12 +261,11 @@ stream = ExtResource("3_qhqgy")
 script = ExtResource("4_dqkch")
 starting_state = NodePath("idle")
 
-[node name="idle" type="Node" parent="state_machine" node_paths=PackedStringArray("fall_state", "jump_state", "move_state", "roll_state")]
+[node name="idle" type="Node" parent="state_machine" node_paths=PackedStringArray("fall_state", "jump_state", "move_state")]
 script = ExtResource("5_qlg0r")
 fall_state = NodePath("../fall")
 jump_state = NodePath("../jump")
 move_state = NodePath("../move")
-roll_state = NodePath("../roll")
 animation_name = "idle"
 
 [node name="fall" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state", "move_state", "roll_state")]
@@ -277,12 +275,11 @@ move_state = NodePath("../move")
 roll_state = NodePath("../roll")
 animation_name = "idle"
 
-[node name="move" type="Node" parent="state_machine" node_paths=PackedStringArray("fall_state", "idle_state", "jump_state", "roll_state")]
+[node name="move" type="Node" parent="state_machine" node_paths=PackedStringArray("fall_state", "idle_state", "jump_state")]
 script = ExtResource("7_fjrip")
 fall_state = NodePath("../fall")
 idle_state = NodePath("../idle")
 jump_state = NodePath("../jump")
-roll_state = NodePath("../roll")
 animation_name = "run"
 
 [node name="jump" type="Node" parent="state_machine" node_paths=PackedStringArray("fall_state", "idle_state", "move_state")]
@@ -298,5 +295,4 @@ idle_state = NodePath("../idle")
 fall_state = NodePath("../fall")
 move_state = NodePath("../move")
 jump_state = NodePath("../jump")
-roll_distance = 65
 animation_name = "roll"

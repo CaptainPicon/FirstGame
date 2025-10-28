@@ -6,12 +6,17 @@ var fall_state: State
 var idle_state: State
 @export
 var jump_state: State
+@export
+var roll_state: State
 
 var last_input_direction := 0
 
 func process_input(event: InputEvent) -> State:
 	if Input.is_action_just_pressed('jump') and parent.is_on_floor():
 		return jump_state
+	if Input.is_action_just_pressed('roll') and parent.is_on_floor():
+		return roll_state
+		
 	return null
 
 

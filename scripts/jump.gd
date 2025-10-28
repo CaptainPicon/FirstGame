@@ -6,14 +6,15 @@ var fall_state: State
 var idle_state: State
 @export
 var move_state: State
-
 @export
 var jump_force: float = 300.0
+
 
 func enter() -> void:
 	super()
 	parent.velocity.y = -jump_force
-
+	$"../../JumpSound".play()
+	
 func process_physics(delta: float) -> State:
 	parent.velocity.y += gravity * delta
 	
